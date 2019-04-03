@@ -14,8 +14,8 @@ typedef short I16;
 typedef unsigned short U16;
 typedef int I32;
 typedef unsigned int U32;
-typedef __int64 I64;
-typedef unsigned __int64 U64;
+typedef long long I64;
+typedef unsigned long long U64;
 
 /* constants from cmacros.ss */
 #define $c_func_closure_index 0x4
@@ -65,9 +65,9 @@ typedef unsigned __int64 U64;
 #define alloc_waste_maximum 0x400
 #define annotation_debug 0x1
 #define annotation_profile 0x2
-#define architecture x86
-#define asm_arg_reg_cnt 0x1
-#define asm_arg_reg_max 0x1
+#define architecture arm32
+#define asm_arg_reg_cnt 0x3
+#define asm_arg_reg_max 0x5
 #define bigit_bits 0x20
 #define bigit_bytes 0x4
 #define bignum_data_disp 0x5
@@ -263,7 +263,6 @@ typedef unsigned __int64 U64;
 #define inexactnum_real_disp 0x9
 #define inexactnum_type_disp 0x1
 #define int_bits 0x20
-#define integer_divide_instruction 1
 #define keyboard_interrupt_index 0x3
 #define library_entry_vector_size 0x210
 #define libspec_closure_index 0xD
@@ -282,7 +281,7 @@ typedef unsigned __int64 U64;
 #define log2_ptr_bytes 0x2
 #define long_bits 0x20
 #define long_long_bits 0x40
-#define machine_type 0x3
+#define machine_type 0x1F
 #define machine_type_a6fb 0x15
 #define machine_type_a6le 0xB
 #define machine_type_a6nb 0x19
@@ -302,7 +301,7 @@ typedef unsigned __int64 U64;
 #define machine_type_i3qnx 0x1D
 #define machine_type_i3s2 0x13
 #define machine_type_limit 0x23
-#define machine_type_name i3nt
+#define machine_type_name arm32le
 #define machine_type_ppc32le 0x21
 #define machine_type_ta6fb 0x16
 #define machine_type_ta6le 0xC
@@ -441,6 +440,9 @@ typedef unsigned __int64 U64;
 #define record_type_type_disp 0x1
 #define record_type_uid_disp 0x21
 #define reloc_abs 0x0
+#define reloc_arm32_abs 0x1
+#define reloc_arm32_call 0x2
+#define reloc_arm32_jump 0x3
 #define reloc_code_offset_index 0x3
 #define reloc_code_offset_mask 0x3FF
 #define reloc_code_offset_offset 0x4
@@ -449,7 +451,6 @@ typedef unsigned __int64 U64;
 #define reloc_item_offset_mask 0x3FFFF
 #define reloc_item_offset_offset 0xE
 #define reloc_longp_index 0x4
-#define reloc_rel 0x1
 #define reloc_table_code_disp 0x4
 #define reloc_table_data_disp 0x8
 #define reloc_table_size_disp 0x0
@@ -498,7 +499,7 @@ typedef unsigned __int64 U64;
 #define size_rp_header 0x10
 #define size_rtd_counts 0x410
 #define size_symbol 0x18
-#define size_tc 0x148
+#define size_tc 0x158
 #define size_thread 0x8
 #define size_tlc 0x10
 #define size_typed_object 0x8
@@ -541,70 +542,69 @@ typedef unsigned __int64 U64;
 #define symbol_pvalue_disp 0x9
 #define symbol_splist_disp 0x15
 #define symbol_value_disp 0x5
-#define tc_U_disp 0xA4
-#define tc_V_disp 0xA8
-#define tc_W_disp 0xAC
-#define tc_X_disp 0xB0
-#define tc_Y_disp 0xB4
-#define tc_ac0_disp 0x4
-#define tc_ac1_disp 0x8
-#define tc_active_disp 0x8C
-#define tc_alloc_counter_disp 0x138
-#define tc_ap_disp 0x18
+#define tc_U_disp 0xB4
+#define tc_V_disp 0xB8
+#define tc_W_disp 0xBC
+#define tc_X_disp 0xC0
+#define tc_Y_disp 0xC4
+#define tc_ac0_disp 0x14
+#define tc_ac1_disp 0x18
+#define tc_active_disp 0x9C
+#define tc_alloc_counter_disp 0x148
+#define tc_ap_disp 0x28
 #define tc_arg_regs_disp 0x0
-#define tc_block_counter_disp 0xDC
-#define tc_cchain_disp 0x80
-#define tc_code_ranges_to_flush_disp 0x84
-#define tc_compile_profile_disp 0x108
-#define tc_cp_disp 0x10
-#define tc_current_error_disp 0xD8
-#define tc_current_input_disp 0xD0
-#define tc_current_mso_disp 0xE4
-#define tc_current_output_disp 0xD4
-#define tc_default_record_equal_procedure_disp 0x124
-#define tc_default_record_hash_procedure_disp 0x128
-#define tc_disable_count_disp 0xC0
-#define tc_eap_disp 0x1C
-#define tc_esp_disp 0x14
-#define tc_fxfirst_bit_set_bv_disp 0xF0
-#define tc_fxlength_bv_disp 0xEC
-#define tc_generate_inspector_information_disp 0x10C
-#define tc_generate_procedure_source_information_disp 0x110
-#define tc_generate_profile_forms_disp 0x114
-#define tc_guardian_entries_disp 0x7C
-#define tc_instr_counter_disp 0x130
-#define tc_keyboard_interrupt_pending_disp 0xC8
-#define tc_meta_level_disp 0x104
-#define tc_null_immutable_bytevector_disp 0xFC
-#define tc_null_immutable_fxvector_disp 0xF8
-#define tc_null_immutable_string_disp 0x100
-#define tc_null_immutable_vector_disp 0xF4
-#define tc_optimize_level_disp 0x118
-#define tc_parameters_disp 0x140
-#define tc_random_seed_disp 0x88
-#define tc_real_eap_disp 0x38
-#define tc_ret_disp 0x20
-#define tc_scheme_stack_disp 0x90
-#define tc_scheme_stack_size_disp 0x9C
-#define tc_sfd_disp 0xE0
-#define tc_sfp_disp 0xC
-#define tc_signal_interrupt_pending_disp 0xC4
-#define tc_something_pending_disp 0xB8
-#define tc_stack_cache_disp 0x94
-#define tc_stack_link_disp 0x98
-#define tc_subset_mode_disp 0x11C
-#define tc_suppress_primitive_inlining_disp 0x120
-#define tc_target_machine_disp 0xE8
-#define tc_td_disp 0x34
-#define tc_threadno_disp 0xCC
-#define tc_timer_ticks_disp 0xBC
-#define tc_trap_disp 0x24
-#define tc_ts_disp 0x30
-#define tc_virtual_registers_disp 0x3C
-#define tc_winders_disp 0xA0
-#define tc_xp_disp 0x28
-#define tc_yp_disp 0x2C
-#define thread_handle_uptrs 0x1
+#define tc_block_counter_disp 0xEC
+#define tc_cchain_disp 0x90
+#define tc_code_ranges_to_flush_disp 0x94
+#define tc_compile_profile_disp 0x118
+#define tc_cp_disp 0x20
+#define tc_current_error_disp 0xE8
+#define tc_current_input_disp 0xE0
+#define tc_current_mso_disp 0xF4
+#define tc_current_output_disp 0xE4
+#define tc_default_record_equal_procedure_disp 0x134
+#define tc_default_record_hash_procedure_disp 0x138
+#define tc_disable_count_disp 0xD0
+#define tc_eap_disp 0x2C
+#define tc_esp_disp 0x24
+#define tc_fxfirst_bit_set_bv_disp 0x100
+#define tc_fxlength_bv_disp 0xFC
+#define tc_generate_inspector_information_disp 0x11C
+#define tc_generate_procedure_source_information_disp 0x120
+#define tc_generate_profile_forms_disp 0x124
+#define tc_guardian_entries_disp 0x8C
+#define tc_instr_counter_disp 0x140
+#define tc_keyboard_interrupt_pending_disp 0xD8
+#define tc_meta_level_disp 0x114
+#define tc_null_immutable_bytevector_disp 0x10C
+#define tc_null_immutable_fxvector_disp 0x108
+#define tc_null_immutable_string_disp 0x110
+#define tc_null_immutable_vector_disp 0x104
+#define tc_optimize_level_disp 0x128
+#define tc_parameters_disp 0x150
+#define tc_random_seed_disp 0x98
+#define tc_real_eap_disp 0x48
+#define tc_ret_disp 0x30
+#define tc_scheme_stack_disp 0xA0
+#define tc_scheme_stack_size_disp 0xAC
+#define tc_sfd_disp 0xF0
+#define tc_sfp_disp 0x1C
+#define tc_signal_interrupt_pending_disp 0xD4
+#define tc_something_pending_disp 0xC8
+#define tc_stack_cache_disp 0xA4
+#define tc_stack_link_disp 0xA8
+#define tc_subset_mode_disp 0x12C
+#define tc_suppress_primitive_inlining_disp 0x130
+#define tc_target_machine_disp 0xF8
+#define tc_td_disp 0x44
+#define tc_threadno_disp 0xDC
+#define tc_timer_ticks_disp 0xCC
+#define tc_trap_disp 0x34
+#define tc_ts_disp 0x40
+#define tc_virtual_registers_disp 0x4C
+#define tc_winders_disp 0xB0
+#define tc_xp_disp 0x38
+#define tc_yp_disp 0x3C
 #define thread_tc_disp 0x5
 #define thread_type_disp 0x1
 #define time_collector_cpu 0x5
@@ -612,7 +612,7 @@ typedef unsigned __int64 U64;
 #define time_duration 0x2
 #define time_monotonic 0x3
 #define time_process 0x0
-#define time_t_bits 0x40
+#define time_t_bits 0x20
 #define time_thread 0x1
 #define time_utc 0x4
 #define timer_interrupt_index 0x2
@@ -672,21 +672,20 @@ typedef unsigned __int64 U64;
 #define typed_object_type_disp 0x1
 #define typedef_i16 "short"
 #define typedef_i32 "int"
-#define typedef_i64 "__int64"
+#define typedef_i64 "long long"
 #define typedef_i8 "char"
 #define typedef_iptr "int"
 #define typedef_ptr "void *"
 #define typedef_string_char "unsigned int"
 #define typedef_u16 "unsigned short"
 #define typedef_u32 "unsigned int"
-#define typedef_u64 "unsigned __int64"
+#define typedef_u64 "unsigned long long"
 #define typedef_u8 "unsigned char"
 #define typedef_uptr "unsigned int"
 #define typemod 0x8
 #define unactivate_mode_deactivate 0x1
 #define unactivate_mode_destroy 0x2
 #define unactivate_mode_noop 0x0
-#define unaligned_floats 1
 #define unaligned_integers 1
 #define underflow_limit 0x40
 #define unscaled_shot_1_shot_flag -0x1
@@ -697,7 +696,7 @@ typedef unsigned __int64 U64;
 #define vector_type_disp 0x1
 #define virtual_register_count 0x10
 #define visit_tag 0x0
-#define wchar_bits 0x10
+#define wchar_bits 0x20
 
 /* constants from declare-c-entries */
 #define CENTRY_Scall_any_results 24
@@ -897,71 +896,71 @@ typedef unsigned __int64 U64;
 #define THREADTC(x) (*((uptr *)((uptr)(x)+5)))
 
 /* thread-context data */
-#define U(x) (*((ptr *)((uptr)(x)+164)))
-#define V(x) (*((ptr *)((uptr)(x)+168)))
-#define W(x) (*((ptr *)((uptr)(x)+172)))
-#define X(x) (*((ptr *)((uptr)(x)+176)))
-#define Y(x) (*((ptr *)((uptr)(x)+180)))
-#define AC0(x) (*((void* *)((uptr)(x)+4)))
-#define AC1(x) (*((void* *)((uptr)(x)+8)))
-#define ACTIVE(x) (*((I32 *)((uptr)(x)+140)))
-#define ALLOCCOUNTER(x) (*((U64 *)((uptr)(x)+312)))
-#define AP(x) (*((void* *)((uptr)(x)+24)))
+#define U(x) (*((ptr *)((uptr)(x)+180)))
+#define V(x) (*((ptr *)((uptr)(x)+184)))
+#define W(x) (*((ptr *)((uptr)(x)+188)))
+#define X(x) (*((ptr *)((uptr)(x)+192)))
+#define Y(x) (*((ptr *)((uptr)(x)+196)))
+#define AC0(x) (*((void* *)((uptr)(x)+20)))
+#define AC1(x) (*((void* *)((uptr)(x)+24)))
+#define ACTIVE(x) (*((I32 *)((uptr)(x)+156)))
+#define ALLOCCOUNTER(x) (*((U64 *)((uptr)(x)+328)))
+#define AP(x) (*((void* *)((uptr)(x)+40)))
 #define ARGREGS(x,i) (((void* *)((uptr)(x)+0))[i])
-#define BLOCKCOUNTER(x) (*((ptr *)((uptr)(x)+220)))
-#define CCHAIN(x) (*((ptr *)((uptr)(x)+128)))
-#define CODERANGESTOFLUSH(x) (*((ptr *)((uptr)(x)+132)))
-#define COMPILEPROFILE(x) (*((ptr *)((uptr)(x)+264)))
-#define CP(x) (*((void* *)((uptr)(x)+16)))
-#define CURRENTERROR(x) (*((ptr *)((uptr)(x)+216)))
-#define CURRENTINPUT(x) (*((ptr *)((uptr)(x)+208)))
-#define CURRENTMSO(x) (*((ptr *)((uptr)(x)+228)))
-#define CURRENTOUTPUT(x) (*((ptr *)((uptr)(x)+212)))
-#define DEFAULTRECORDEQUALPROCEDURE(x) (*((ptr *)((uptr)(x)+292)))
-#define DEFAULTRECORDHASHPROCEDURE(x) (*((ptr *)((uptr)(x)+296)))
-#define DISABLECOUNT(x) (*((ptr *)((uptr)(x)+192)))
-#define EAP(x) (*((void* *)((uptr)(x)+28)))
-#define ESP(x) (*((void* *)((uptr)(x)+20)))
-#define FXFIRSTBITSETBV(x) (*((ptr *)((uptr)(x)+240)))
-#define FXLENGTHBV(x) (*((ptr *)((uptr)(x)+236)))
-#define GENERATEINSPECTORINFORMATION(x) (*((ptr *)((uptr)(x)+268)))
-#define GENERATEPROCEDURESOURCEINFORMATION(x) (*((ptr *)((uptr)(x)+272)))
-#define GENERATEPROFILEFORMS(x) (*((ptr *)((uptr)(x)+276)))
-#define GUARDIANENTRIES(x) (*((ptr *)((uptr)(x)+124)))
-#define INSTRCOUNTER(x) (*((U64 *)((uptr)(x)+304)))
-#define KEYBOARDINTERRUPTPENDING(x) (*((ptr *)((uptr)(x)+200)))
-#define METALEVEL(x) (*((ptr *)((uptr)(x)+260)))
-#define NULLIMMUTABLEBYTEVECTOR(x) (*((ptr *)((uptr)(x)+252)))
-#define NULLIMMUTABLEFXVECTOR(x) (*((ptr *)((uptr)(x)+248)))
-#define NULLIMMUTABLESTRING(x) (*((ptr *)((uptr)(x)+256)))
-#define NULLIMMUTABLEVECTOR(x) (*((ptr *)((uptr)(x)+244)))
-#define OPTIMIZELEVEL(x) (*((ptr *)((uptr)(x)+280)))
-#define PARAMETERS(x) (*((ptr *)((uptr)(x)+320)))
-#define RANDOMSEED(x) (*((U32 *)((uptr)(x)+136)))
-#define REAL_EAP(x) (*((void* *)((uptr)(x)+56)))
-#define RET(x) (*((void* *)((uptr)(x)+32)))
-#define SCHEMESTACK(x) (*((void* *)((uptr)(x)+144)))
-#define SCHEMESTACKSIZE(x) (*((iptr *)((uptr)(x)+156)))
-#define SFD(x) (*((ptr *)((uptr)(x)+224)))
-#define SFP(x) (*((void* *)((uptr)(x)+12)))
-#define SIGNALINTERRUPTPENDING(x) (*((ptr *)((uptr)(x)+196)))
-#define SOMETHINGPENDING(x) (*((ptr *)((uptr)(x)+184)))
-#define STACKCACHE(x) (*((ptr *)((uptr)(x)+148)))
-#define STACKLINK(x) (*((ptr *)((uptr)(x)+152)))
-#define SUBSETMODE(x) (*((ptr *)((uptr)(x)+284)))
-#define SUPPRESSPRIMITIVEINLINING(x) (*((ptr *)((uptr)(x)+288)))
-#define TARGETMACHINE(x) (*((ptr *)((uptr)(x)+232)))
-#define TD(x) (*((void* *)((uptr)(x)+52)))
-#define THREADNO(x) (*((ptr *)((uptr)(x)+204)))
-#define TIMERTICKS(x) (*((ptr *)((uptr)(x)+188)))
-#define TRAP(x) (*((void* *)((uptr)(x)+36)))
-#define TS(x) (*((void* *)((uptr)(x)+48)))
-#define VIRTUALREGISTERS(x,i) (((ptr *)((uptr)(x)+60))[i])
-#define WINDERS(x) (*((ptr *)((uptr)(x)+160)))
-#define XP(x) (*((void* *)((uptr)(x)+40)))
-#define YP(x) (*((void* *)((uptr)(x)+44)))
+#define BLOCKCOUNTER(x) (*((ptr *)((uptr)(x)+236)))
+#define CCHAIN(x) (*((ptr *)((uptr)(x)+144)))
+#define CODERANGESTOFLUSH(x) (*((ptr *)((uptr)(x)+148)))
+#define COMPILEPROFILE(x) (*((ptr *)((uptr)(x)+280)))
+#define CP(x) (*((void* *)((uptr)(x)+32)))
+#define CURRENTERROR(x) (*((ptr *)((uptr)(x)+232)))
+#define CURRENTINPUT(x) (*((ptr *)((uptr)(x)+224)))
+#define CURRENTMSO(x) (*((ptr *)((uptr)(x)+244)))
+#define CURRENTOUTPUT(x) (*((ptr *)((uptr)(x)+228)))
+#define DEFAULTRECORDEQUALPROCEDURE(x) (*((ptr *)((uptr)(x)+308)))
+#define DEFAULTRECORDHASHPROCEDURE(x) (*((ptr *)((uptr)(x)+312)))
+#define DISABLECOUNT(x) (*((ptr *)((uptr)(x)+208)))
+#define EAP(x) (*((void* *)((uptr)(x)+44)))
+#define ESP(x) (*((void* *)((uptr)(x)+36)))
+#define FXFIRSTBITSETBV(x) (*((ptr *)((uptr)(x)+256)))
+#define FXLENGTHBV(x) (*((ptr *)((uptr)(x)+252)))
+#define GENERATEINSPECTORINFORMATION(x) (*((ptr *)((uptr)(x)+284)))
+#define GENERATEPROCEDURESOURCEINFORMATION(x) (*((ptr *)((uptr)(x)+288)))
+#define GENERATEPROFILEFORMS(x) (*((ptr *)((uptr)(x)+292)))
+#define GUARDIANENTRIES(x) (*((ptr *)((uptr)(x)+140)))
+#define INSTRCOUNTER(x) (*((U64 *)((uptr)(x)+320)))
+#define KEYBOARDINTERRUPTPENDING(x) (*((ptr *)((uptr)(x)+216)))
+#define METALEVEL(x) (*((ptr *)((uptr)(x)+276)))
+#define NULLIMMUTABLEBYTEVECTOR(x) (*((ptr *)((uptr)(x)+268)))
+#define NULLIMMUTABLEFXVECTOR(x) (*((ptr *)((uptr)(x)+264)))
+#define NULLIMMUTABLESTRING(x) (*((ptr *)((uptr)(x)+272)))
+#define NULLIMMUTABLEVECTOR(x) (*((ptr *)((uptr)(x)+260)))
+#define OPTIMIZELEVEL(x) (*((ptr *)((uptr)(x)+296)))
+#define PARAMETERS(x) (*((ptr *)((uptr)(x)+336)))
+#define RANDOMSEED(x) (*((U32 *)((uptr)(x)+152)))
+#define REAL_EAP(x) (*((void* *)((uptr)(x)+72)))
+#define RET(x) (*((void* *)((uptr)(x)+48)))
+#define SCHEMESTACK(x) (*((void* *)((uptr)(x)+160)))
+#define SCHEMESTACKSIZE(x) (*((iptr *)((uptr)(x)+172)))
+#define SFD(x) (*((ptr *)((uptr)(x)+240)))
+#define SFP(x) (*((void* *)((uptr)(x)+28)))
+#define SIGNALINTERRUPTPENDING(x) (*((ptr *)((uptr)(x)+212)))
+#define SOMETHINGPENDING(x) (*((ptr *)((uptr)(x)+200)))
+#define STACKCACHE(x) (*((ptr *)((uptr)(x)+164)))
+#define STACKLINK(x) (*((ptr *)((uptr)(x)+168)))
+#define SUBSETMODE(x) (*((ptr *)((uptr)(x)+300)))
+#define SUPPRESSPRIMITIVEINLINING(x) (*((ptr *)((uptr)(x)+304)))
+#define TARGETMACHINE(x) (*((ptr *)((uptr)(x)+248)))
+#define TD(x) (*((void* *)((uptr)(x)+68)))
+#define THREADNO(x) (*((ptr *)((uptr)(x)+220)))
+#define TIMERTICKS(x) (*((ptr *)((uptr)(x)+204)))
+#define TRAP(x) (*((void* *)((uptr)(x)+52)))
+#define TS(x) (*((void* *)((uptr)(x)+64)))
+#define VIRTUALREGISTERS(x,i) (((ptr *)((uptr)(x)+76))[i])
+#define WINDERS(x) (*((ptr *)((uptr)(x)+176)))
+#define XP(x) (*((void* *)((uptr)(x)+56)))
+#define YP(x) (*((void* *)((uptr)(x)+60)))
 #define ARGREG(x,i) (((void* *)((uptr)(x)+0))[i])
-#define VIRTREG(x,i) (((ptr *)((uptr)(x)+60))[i])
+#define VIRTREG(x,i) (((ptr *)((uptr)(x)+76))[i])
 
 /* library entries we access from C code */
 #define library_nonprocedure_code 152
